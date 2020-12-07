@@ -1,4 +1,5 @@
 #Attack of the clones tiling dna question Dynamic Programming
+#HACKERRANK SUBMISSION
 import sys
 
 T = []
@@ -12,7 +13,7 @@ def findTiling(i, t, k, tiles):
     else:
         #reached front of string t
         if i == 0:
-            print(t)
+            #print(t)
             T[i] = True
             return True
         else:
@@ -20,7 +21,7 @@ def findTiling(i, t, k, tiles):
             for j in range(k):
 
                 if ((len(tiles[j]) <= i) and t[:i].endswith(tiles[j]) and findTiling(i - len(tiles[j]), t, j, tiles)):
-                    print(t[:i], tiles[j], j+1)
+                    #print(t[:i], tiles[j], j+1)
                     
                     I.append(j+1)
 
@@ -33,10 +34,9 @@ def findTiling(i, t, k, tiles):
 
 
 
-def getInput(file):
+def getInput():
     #READING FROM INPUT FILE
-    f = open(file, 'r')
-    lines = f.readlines()
+    lines = sys.stdin.readlines()
     #lines = sys.stdin.readlines()
     
     for i in range(len(lines)):
@@ -50,11 +50,9 @@ def getInput(file):
     return t, k, tiles
 
 def main():
-    #lines, n, m = getInput('tests/test2.in')
-    t, k, tiles = getInput('sample0.txt')
+    t, k, tiles = getInput()
     len_t = len(t) + 1
     len_k = int(k) + 1
-    #print(t, k, tiles)
     
 
     #T = [[0] * len_k] * len_t
@@ -67,14 +65,25 @@ def main():
     match_found = findTiling(len(t), t, int(k), tiles)
 
     if match_found:
+        '''
         print('match found')
         print(T)
 
         for k in range(len(I)):
-            print('tile: ',tiles[I[k] - 1],I[k])        
-            
+            print('tile: ',tiles[I[k] - 1],I[k])
 
-        print(str(len(I)), " ".join(str(x) for x in I))
+        print(len_k)
+        for j in range(1,len_k):
+            
+            if T[j] == True:
+                print(j,tiles[j- 1])
+            else:
+                print(j)
+        
+        '''    
+
+        string = str(len(I)) + " " + " ".join(str(x) for x in I)
+        print(string)
 
     else:
         print(0)
